@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./css/main.css">
+
+    <script src="./lib/layDate-v5.0.9/layDate-v5.0.9/laydate/laydate.js"></script>
+    <script type="text/javascript" src="./lib/echarts.min.js"></script>
+
+    <script src="./lib/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script src="./js/china.js"></script>
+
+    
+</head>
+<body>
+    <div id="myApp" style="height: 100%;width: 100%;">
+        <div class="header">
+            <div class="header-left">
+                <p>全国热点分布</p>
+            </div>
+            <div class="header-right">
+                <p>全国热点信息</p>
+                <input type="text" class="data-chose" id="datechoose" readonly="value">
+                <img id="date-icon" class="date-icon" src="./imgs/date.png" alt="">
+                <button>1日</button>
+                <button>3日</button>
+                <button>7日</button>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="content-left" id="left-contant-map"></div>
+    
+            <div class="content-right">
+                <div class="content-right-content">
+                    <div class="content-title">
+                        <span>全国热点</span>
+                        <span>热值</span>
+                    </div>
+                    <div class="content-list">
+                        <ul>
+                            <li v-for="listitem in listPage1">{{listitem.name}}<span>{{listitem.value}}</span></li>
+                        </ul>
+                    </div>
+                    <div class="content-choose">
+                         <span><</span>
+                         <span id="btn-first" @click="firstPage(1)">1</span>
+                         <span id="btn-second" @click="secondPage(2)">2</span>
+                         <span id="btn-third" @click="thirdPage(3)">3</span>
+                         <span @click="nextPage()">></span>
+                    </div>
+                 </div>
+            </div>
+        </div>
+        
+        <div class="foot" >
+            <div class="foot-left">
+                <div class="foot-left-content">
+                    <div class="hot-icon">
+                        <span class="word-heigh">热度高</span>
+                        <span class="span-1"></span>
+                        <span class="span-2"></span>
+                        <span class="span-3"></span>
+                        <span class="span-4"></span>
+                        <span class="span-5"></span>
+                        <span class="word-low">热度低</span>
+                    </div>
+
+                    <div class="hot-area">
+                        <p>2016.06.05地域统计</p>
+                        <div class="left-bottom-sort">
+                            <ul>
+                                <li>排序</li>
+                                <li>1</li>
+                                <li>2</li>
+                                <li>3</li>
+                                <li>4</li>
+                                <li>5</li>
+                                <li>6</li>
+                                <li>7</li>
+                                <li>8</li>
+                                <li>9</li>
+                                <li>10</li>
+                            </ul>
+                        </div>
+                        <div class="left-bottom-sortarea">
+                            <ul>
+                                <li v-for="areaData in area">{{areaData.area}}</li>
+                            </ul>
+                        </div>
+                        <div class="left-bottom-heatvalue">
+                            <ul>
+                                <li v-for="hotValue in area">{{hotValue.value}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="foot-right">
+                <div class="foot-right-figure" id="container"></div>
+            </div>
+        </div>
+    </div
+
+    
+</body>
+<script src="./js/toList.js"></script>
+<script src="./js/hotbar.js"></script>
+<script src="./js/hotmap.js"></script>
+<script>
+    var icon=document.getElementById('date-icon');
+    icon.addEventListener("click",(function(){
+            laydate.render({
+            elem: '#datechoose' 
+        });
+    })())
+</script> 
+</html>
